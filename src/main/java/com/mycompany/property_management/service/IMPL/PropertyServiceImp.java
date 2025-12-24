@@ -26,7 +26,6 @@ public class PropertyServiceImp implements PropertyService {
         PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
         PropertyEntity saved = propertyRepository.save(pe);
 
-        // convert saved entity -> dto (will include id)
         PropertyDTO dto = propertyConverter.convertEntityDTO(saved);
         return dto;
     }
@@ -50,15 +49,10 @@ public class PropertyServiceImp implements PropertyService {
             PropertyEntity pe = optEn.get();
             pe.setTitle(propertyDTO.getTitle());
             pe.setAddress(propertyDTO.getAddress());
-            pe.setOwnerName(propertyDTO.getOwnerName());
-            pe.setOwnerEmail(propertyDTO.getOwnerEmail());
             pe.setPrice(propertyDTO.getPrice());
             pe.setDescription(propertyDTO.getDescription());
 
-            // Save updated entity first (so DB-managed fields are applied)
             PropertyEntity saved = propertyRepository.save(pe);
-
-            // Convert saved to DTO and return
             dto = propertyConverter.convertEntityDTO(saved);
         }
         return dto;

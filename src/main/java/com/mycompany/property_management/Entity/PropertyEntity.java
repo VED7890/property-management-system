@@ -13,12 +13,9 @@ import lombok.Setter;
 public class PropertyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;                 // lowercase 'id'
-
+    private Long id;
     private String title;
     private String description;
-    private String ownerName;        // camelCase
-    private String ownerEmail;       // camelCase
     private Double price;
     private String address;
 }
